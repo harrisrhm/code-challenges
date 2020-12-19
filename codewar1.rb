@@ -25,3 +25,18 @@ def is_valid_walk(walk)
 end
 
 # is_valid_walk(['n','s','n','s','n','s','n','s','n','s'])
+
+# refactored code
+
+def is_valid_walk(walk)
+  (walk.length > 10 || walk.length < 10) ? false : calculate_walk(walk)
+end
+
+def calculate_walk(walk)
+  count_walk = {}
+  
+  walk.each do |direction|
+    count_walk[direction] = walk.count(direction)
+  end
+  (count_walk['n'] == count_walk['s'] && count_walk['e'] == count_walk['w']) ? true : false 
+end
