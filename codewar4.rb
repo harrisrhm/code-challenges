@@ -6,9 +6,15 @@
 # Performance needs to be considered
 
 def scramble(s1, s2)
-  str1 = s1.downcase.split("")
-  str2 = s2.downcase.split("")
-  str1.each { |letter| p letter.include?(str2) }
+  # p s1.chars.include?(s2.chars)
+
+  # p s2.chars == s1.chars ? true : false
+
+  s1.chars.select { |l| p s2.chars.include?(l) }
+  # s1.sort.include?(s2.sort)
+  # s1.downcase.split("")
+  # str2 = s2.downcase.split("")
+  # str1.each { |letter| p letter.include?(str2) }
   # s1.downcase.each do |l|
   #   str2 = s2.downcase.split(",")
   #   p l.include?(str2)
