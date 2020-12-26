@@ -30,16 +30,12 @@ end
 def sum_dig_pow(a)
   # your code here
   arr = a.to_s.chars.map { |n| n.to_i }
+  tab1 = []
   tab = []
   sum = 0
   arr
   arr.each do |n|
-    total = n ** sum += 1
-      total.each { |n| n + n }
-    total
+    tab << total = n ** sum += 1
   end
-  tab
-  # arr = []
-  # a.each { |n| arr << n**n }
-  # arr
+  tab1 << tab.inject { |total, m| total + m }
 end
