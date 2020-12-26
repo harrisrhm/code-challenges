@@ -9,3 +9,30 @@
 # 2.  If the character in the string is whitespace then pass over it as if it was an empty seat
 
 # wave("hello") => ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
+
+
+# def wave(str)
+#   # Code here
+#   arr = []
+#   m = str.chars
+#   m.each_with_index do |letter, index|
+#     index = 0 
+#     if index < m.length 
+#       letter.capitalize
+#       index += 1
+#     end
+#     arr << letter
+#   end
+#   arr
+# end
+
+#working solution
+def wave(str)
+  # Code here
+  arr = []
+  m = str.chars
+  (0..m.length - 1).each do |i|
+    arr << m.map.with_index { |letter, index| index == i ? letter.upcase : letter }.join("")
+    end
+  arr
+end
