@@ -32,7 +32,7 @@ def wave(str)
   m = str.chars
   arr = []
   (0..m.length - 1).each do |i|
-    arr << m.map.with_index { |letter, index| letter == " " next index == i ? letter.upcase : letter }.join("")
+    arr << m.map.with_index { |letter, index| index == i ? letter.upcase : letter }.join("")
   end
   arr
 end
