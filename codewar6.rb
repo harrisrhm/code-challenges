@@ -26,13 +26,41 @@
 #   arr
 # end
 
-#working solution
+#working solution (doesn't work on whitespace)
 def wave(str)
   # Code here
-  arr = []
   m = str.chars
+  arr = []
   (0..m.length - 1).each do |i|
-    arr << m.map.with_index { |letter, index| index == i ? letter.upcase : letter }.join("")
-    end
+    arr << m.map.with_index { |letter, index| letter == " " next index == i ? letter.upcase : letter }.join("")
+  end
+  arr
+end
+
+# def wave(str)
+#   # Code here
+#   m = str.chars
+#   arr = []
+#   (0..m.length - 1).each do |i|
+#     arr << m.map.each.with_index do |letter, index| 
+#       if letter == " "
+#       next index == i
+#       letter.upcase
+#       else 
+#       letter
+#       end
+#     end
+#   arr.join("")
+#   end
+# end
+
+#working solution final
+def wave(str)
+  arr = []
+  m = str.downcase.chars
+  m.each_with_index do |letter, index|
+    next if letter == " "
+    arr << str[0...index] + letter.upcase + str[index+1..-1]
+  end
   arr
 end
