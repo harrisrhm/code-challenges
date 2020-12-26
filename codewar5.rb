@@ -26,3 +26,20 @@ def sum_dig_pow(a, b)
   (a..b).each { |n| arr << n**n }
   arr
 end
+
+def sum_dig_pow(a)
+  # your code here
+  arr = a.to_s.chars.map { |n| n.to_i }
+  tab = []
+  sum = 0
+  arr
+  arr.each do |n|
+    total = n ** sum += 1
+      total.each { |n| n + n }
+    total
+  end
+  tab
+  # arr = []
+  # a.each { |n| arr << n**n }
+  # arr
+end
