@@ -20,22 +20,39 @@
 
 # sum_dig_pow(90, 100) == []
 
+
+# First attempt for single digit
+# def sum_dig_pow(a)
+#   # your code here
+#   arr = a.to_s.chars.map { |n| n.to_i }
+#   tab1 = []
+#   tab = []
+#   sum = 0
+#   arr
+#   arr.each do |n|
+#     tab << total = n ** sum += 1
+#   end
+#   tab1 << tab.inject { |total, m| total + m }
+# end
+
+# Working solution
+
 def sum_dig_pow(a, b)
-  # your code here
-  arr = []
-  (a..b).each { |n| arr << n**n }
-  arr
+  tab = []
+  (a..b).each do |x|
+    n = 0
+    z = x.to_s.split('').inject(0) do |sum, y|
+      n += 1
+      sum + y.to_i ** n
+    end
+    tab << x if z == x
+  end
+  tab
 end
 
-def sum_dig_pow(a)
-  # your code here
-  arr = a.to_s.chars.map { |n| n.to_i }
-  tab1 = []
-  tab = []
-  sum = 0
-  arr
-  arr.each do |n|
-    tab << total = n ** sum += 1
-  end
-  tab1 << tab.inject { |total, m| total + m }
-end
+# Refactored
+
+# def sum_dig_pow(a, b)
+#   (a..b).select {|n| n.to_s.chars.map.with_index{|n, i| n.to_i**(i+1)}.reduce(:+) == n} 
+# end
+
