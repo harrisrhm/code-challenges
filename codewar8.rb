@@ -48,3 +48,10 @@ def anagrams(word, words)
   end
   arr
 end
+
+#Refactored
+def anagrams(word, words)
+  arr = []
+  words.map { |w| w.chars.sort == word.chars.sort ? arr << w : [] }
+  arr
+end
