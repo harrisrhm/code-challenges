@@ -15,10 +15,11 @@ end
 
 def sum_of_intervals(intervals)
   intervals.each do |interval|
-    p ranges = (interval[0]..interval[1]).to_a
+    ranges = (interval[0]..interval[-1]).to_a
   end
 end
 
 def sum_of_intervals(intervals)
-  
+  range = intervals.flatten
+  p all = (range[0]..range[-1]).to_a
 end
