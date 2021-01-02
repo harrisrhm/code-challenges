@@ -58,10 +58,16 @@
 # end
 
 def done_or_not(board)
-  arr = board.flatten
-  p arr.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
-  # TODO: now we have to check if the total number is greater than 9 or less than 9 then the game will finish
-  # If the total == 9 then we finish
+  p hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }.values.sum
+
+  # p final = hash.inject(0) { |sum, tuple| sum += tuple[1] }
+  # p hash.values.inject(0) { |a,b| a + b }
+  # p hash.values.sum
+  # if final != 81 
+  #   p 'Try again!'
+  # else
+  #   p 'Finished!'
+  # end
 end
 
 # done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 9, 5, 2], [5, 3, 4, 6, 7, 8, 9, 1, 2]])
@@ -77,5 +83,15 @@ done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2],
                          [9, 6, 1, 5, 3, 7, 2, 8, 4],
                          [2, 8, 7, 4, 1, 9, 6, 3, 5],
                          [3, 4, 5, 2, 8, 6, 1, 7, 9]])
+
+# done_or_not([[5, 3, 6, 6, 7, 8, 9, 1, 2], 
+#                          [6, 7, 2, 1, 9, 5, 3, 4, 8, 0, 0],
+#                          [1, 9, 8, 3, 4, 2, 5, 6, 7, 0, 0],
+#                          [8, 5, 9, 7, 6, 1, 4, 2, 0, 3],
+#                          [4, 2, 6, 1, 5, 3, 7, 9, 1],
+#                          [7, 1, 3, 8, 8, 4, 8, 5, 6],
+#                          [9, 6, 1, 5, 8, 7, 2, 8, 4],
+#                          [2, 8, 7, 9, 8, 9, 6, 3, 5, 5, 4],
+#                          [3, 4, 5, 2, 8, 6, 1, 7, 9]])
 
 # done_or_not([[5, 5, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 9, 1, 2]])
