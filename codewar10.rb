@@ -31,3 +31,30 @@
 
 
 # For those who don't know the game, here are some information about rules and how to play Sudoku: http://en.wikipedia.org/wiki/Sudoku and http://www.sudokuessentials.com/
+
+
+# def done_or_not(board)
+#   if board[0] != board[1].uniq
+#     p 'not finished'
+#   else
+#     p 'finished'
+#   end
+# end
+
+# def done_or_not(board)
+#  p 'Not finished' if board.select { |e| board.count(e) > 1 }.uniq
+# end
+
+# def done_or_not(board)
+#   p board.find_all { |e| a.count(e) > 1 }
+# end
+
+def done_or_not(board)
+  board.group_by { |k, v| v.first }.values.map(&:count)
+end
+
+done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 8, 1, 2]])
+
+board = [[5, 3, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 8, 1, 2]]
+
+done_or_not([5, 3, 4, 6, 7, 8, 9, 1, 2])
