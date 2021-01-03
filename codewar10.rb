@@ -36,26 +36,31 @@
 
 # Working solution
 # def done_or_not(board)
-#   p hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
+#   p board.flatten
+#   # p hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
 #   # final = hash.values.all? { |value| value == 9 }
 #   # final == true ? 'Finished!' : 'Try again!'
 # end
 
 def done_or_not(board)
-  blocks = []
+  regions = []
   board.each_slice(3) do |row_set|
-    blocks_temp = [[],[],[]]
+    region_array = [[],[],[]]
     row_set.each do |row|
       row.each_slice(3).with_index do |s,i|
-        blocks_temp[i] = blocks_temp[i] + s
+        region_array[i] = region_array[i] + s
       end
     end
-    blocks += blocks_temp
+    regions += region_array
   end
-  return blocks
+  regions.each do |region|
+    threeRegion = region.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
+    finalRegion = threeRegion.values.all? { |value| value == 9 }
+    finalRegion == true ? 'Finished!' : 'Try again!'
+  end
   hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
   final = hash.values.all? { |value| value == 9 }
-  final == true ? 'Finished!' : 'Try again!'
+  p final == true ? 'Finished!' : 'Try again!'
 end
 
 # done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], 
@@ -78,10 +83,14 @@ done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2],
                          [2, 8, 7, 4, 1, 9, 6, 3, 5],
                          [3, 0, 0, 4, 8, 1, 1, 7, 9]])
 
+
+# done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], 
+# [6, 7, 2, 1, 9, 0, 3, 4, 9]])
+
 # done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], [6, 7, 2, 1, 9, 0, 3, 4, 9], [1, 0, 0, 3, 4, 2, 5, 6, 0], [8, 5, 9, 7, 6, 1, 0, 2, 0]])
 
 # board = [[5, 3, 4, 6, 7, 8, 9, 1, 2], 
-#                          [6, 7, 2, 1, 9, 0, 3, 4, 9],
+#                          [6, 7, 2, 1, 9, 0, 3, 3, 4, 9],
 #                          [1, 0, 0, 3, 4, 2, 5, 6, 0],
 #                          [8, 5, 9, 7, 6, 1, 0, 2, 0],
 #                          [4, 2, 6, 8, 5, 3, 7, 9, 1],
