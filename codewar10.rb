@@ -33,65 +33,59 @@
 # For those who don't know the game, here are some information about rules and how to play Sudoku: http://en.wikipedia.org/wiki/Sudoku and http://www.sudokuessentials.com/
 
 
-# def done_or_not(board)
-#   if board[0] != board[1].uniq
-#     p 'not finished'
-#   else
-#     p 'finished'
-#   end
-# end
 
+# Working solution
 # def done_or_not(board)
-#  p 'Not finished' if board.select { |e| board.count(e) > 1 }.uniq
-# end
-
-# def done_or_not(board)
-#   p board.find_all { |e| a.count(e) > 1 }
-# end
-
-# def done_or_not(board)
-#   # p board.group_by { |k, v| v.first }.values.map(&:count)
-#   # p hash = Hash[board.collect { |key, value| [key, value] } ]
-#   counted = Hash.new(0)
-#   board.each { |h| counted[h] += 1 }
-#   p counted = Hash[counted.map { |k,v| [k,v] }]
+#   p hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
+#   # final = hash.values.all? { |value| value == 9 }
+#   # final == true ? 'Finished!' : 'Try again!'
 # end
 
 def done_or_not(board)
-  p hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }.values.sum
-
-  # p final = hash.inject(0) { |sum, tuple| sum += tuple[1] }
-  # p hash.values.inject(0) { |a,b| a + b }
-  # p hash.values.sum
-  # if final != 81 
-  #   p 'Try again!'
-  # else
-  #   p 'Finished!'
-  # end
+  blocks = []
+  board.each_slice(3) do |row_set|
+    blocks_temp = [[],[],[]]
+    row_set.each do |row|
+      row.each_slice(3).with_index do |s,i|
+        blocks_temp[i] = blocks_temp[i] + s
+      end
+    end
+    blocks += blocks_temp
+  end
+  return blocks
+  hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
+  final = hash.values.all? { |value| value == 9 }
+  final == true ? 'Finished!' : 'Try again!'
 end
 
-# done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 9, 5, 2], [5, 3, 4, 6, 7, 8, 9, 1, 2]])
-
-# board = [[5, 3, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 8, 1, 2]]
-
-done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], 
-                         [6, 7, 2, 1, 9, 5, 3, 4, 8],
-                         [1, 9, 8, 3, 4, 2, 5, 6, 7],
-                         [8, 5, 9, 7, 6, 1, 4, 2, 3],
-                         [4, 2, 6, 8, 5, 3, 7, 9, 1],
-                         [7, 1, 3, 9, 2, 4, 8, 5, 6],
-                         [9, 6, 1, 5, 3, 7, 2, 8, 4],
-                         [2, 8, 7, 4, 1, 9, 6, 3, 5],
-                         [3, 4, 5, 2, 8, 6, 1, 7, 9]])
-
-# done_or_not([[5, 3, 6, 6, 7, 8, 9, 1, 2], 
-#                          [6, 7, 2, 1, 9, 5, 3, 4, 8, 0, 0],
-#                          [1, 9, 8, 3, 4, 2, 5, 6, 7, 0, 0],
-#                          [8, 5, 9, 7, 6, 1, 4, 2, 0, 3],
-#                          [4, 2, 6, 1, 5, 3, 7, 9, 1],
-#                          [7, 1, 3, 8, 8, 4, 8, 5, 6],
-#                          [9, 6, 1, 5, 8, 7, 2, 8, 4],
-#                          [2, 8, 7, 9, 8, 9, 6, 3, 5, 5, 4],
+# done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], 
+#                          [6, 7, 2, 1, 9, 5, 3, 4, 8],
+#                          [1, 9, 8, 3, 4, 2, 5, 6, 7],
+#                          [8, 5, 9, 7, 6, 1, 4, 2, 3],
+#                          [4, 2, 6, 8, 5, 3, 7, 9, 1],
+#                          [7, 1, 3, 9, 2, 4, 8, 5, 6],
+#                          [9, 6, 1, 5, 3, 7, 2, 8, 4],
+#                          [2, 8, 7, 4, 1, 9, 6, 3, 5],
 #                          [3, 4, 5, 2, 8, 6, 1, 7, 9]])
 
-# done_or_not([[5, 5, 4, 6, 7, 8, 9, 1, 2], [5, 3, 4, 6, 7, 8, 9, 1, 2]])
+done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], 
+                         [6, 7, 2, 1, 9, 0, 3, 4, 9],
+                         [1, 0, 0, 3, 4, 2, 5, 6, 0],
+                         [8, 5, 9, 7, 6, 1, 0, 2, 0],
+                         [4, 2, 6, 8, 5, 3, 7, 9, 1],
+                         [7, 1, 3, 9, 2, 4, 8, 5, 6],
+                         [9, 0, 1, 5, 3, 7, 2, 1, 4],
+                         [2, 8, 7, 4, 1, 9, 6, 3, 5],
+                         [3, 0, 0, 4, 8, 1, 1, 7, 9]])
+
+# done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], [6, 7, 2, 1, 9, 0, 3, 4, 9], [1, 0, 0, 3, 4, 2, 5, 6, 0], [8, 5, 9, 7, 6, 1, 0, 2, 0]])
+
+# board = [[5, 3, 4, 6, 7, 8, 9, 1, 2], 
+#                          [6, 7, 2, 1, 9, 0, 3, 4, 9],
+#                          [1, 0, 0, 3, 4, 2, 5, 6, 0],
+#                          [8, 5, 9, 7, 6, 1, 0, 2, 0],
+#                          [4, 2, 6, 8, 5, 3, 7, 9, 1],
+#                          [7, 1, 3, 9, 2, 4, 8, 5, 6],
+#                          [9, 0, 1, 5, 3, 7, 2, 1, 4],
+#                          [2, 8, 7, 4, 1, 9, 6, 3, 5],
+#                          [3, 0, 0, 4, 8, 1, 1, 7, 9]]
