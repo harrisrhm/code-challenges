@@ -36,10 +36,9 @@
 
 # Working solution
 # def done_or_not(board)
-#   p board.flatten
-#   # p hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
-#   # final = hash.values.all? { |value| value == 9 }
-#   # final == true ? 'Finished!' : 'Try again!'
+#   hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
+#   final = hash.values.all? { |value| value == 9 }
+#   final == true ? 'Finished!' : 'Try again!'
 # end
 
 def done_or_not(board)
@@ -53,15 +52,27 @@ def done_or_not(board)
     end
     regions += region_array
   end
-  regions.each do |region|
-    threeRegion = region.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
-    finalRegion = threeRegion.values.all? { |value| value == 9 }
-    finalRegion == true ? 'Finished!' : 'Try again!'
-  end
-  hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
-  final = hash.values.all? { |value| value == 9 }
-  p final == true ? 'Finished!' : 'Try again!'
 end
+
+def region(done_or_not)
+  regions.each do |region|
+    three = region.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
+      three.delete(0) if three.has_key? 0
+      p three.values.sum == 9 ? 'Finished!' : 'Try again!'
+  end
+end
+
+  # p $variable
+  # three.values
+  # finalRegion.values.sum
+  # if three.values.sum == 9
+  #   p 'Finished!'
+  # else
+  #   p 'Try again!'
+  # end
+  # hash = board.flatten.each_with_object(Hash.new(0)) { |number, value| value[number] += 1 }
+  # final = hash.values.all? { |value| value == 9 }
+  # p final == true ? 'Finished!' : 'Try again!'
 
 # done_or_not([[5, 3, 4, 6, 7, 8, 9, 1, 2], 
 #                          [6, 7, 2, 1, 9, 5, 3, 4, 8],
