@@ -1,12 +1,8 @@
 # Sum of Pairs
 # Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.
 
-# def sum_pairs(ints)
-#   ints.each do 
-#     p ints[0] + 
-#   end
-# end
 
+# 1 
 # def sum_pairs(ints, n)
 #   arr = []
 #   arr2 = []
@@ -24,47 +20,54 @@
 #   p arr2
 # end
 
-def sum_pairs(ints, s)
-  (1...ints.size).each do |x|
-    (0...x).each do |y|
-      [ints[y], ints[x]] if ints[x] + ints[y] == s
-    end
-  end
-  nil
-end
+# 2
+# def sum_pairs(ints, s)
+#   (1...ints.size).each do |x|
+#     (0...x).each do |y|
+#       [ints[y], ints[x]] if ints[x] + ints[y] == s
+#     end
+#   end
+#   nil
+# end
 
-require 'set'
+# 3
+# require 'set'
 
-def sum_pairs(ints, s)
-  counted = Set.new
-  ints.each do |int|
-    return [s - int, int] if counted.include?(s - int)
-    counted.add(int)
-  end
-  nil
-end
+# def sum_pairs(ints, s)
+#   counted = Set.new
+#   ints.each do |int|
+#     return [s - int, int] if counted.include?(s - int)
+#     counted.add(int)
+#   end
+#   nil
+# end
 
-
-def sum_pairs(ints, sum)
-  checked_nums = []
+# 4
+# def sum_pairs(ints, sum)
+#   checked_nums = []
+#   ints.each do |int|
+#     if checked_nums.include?(int) && int == (sum - int)
+#       return [int, int]
+#     elsif checked_nums.include?(int)
+#       next
+#     elsif checked_nums.include?(sum - int)
+#       return [(sum - int), int]
+#     else
+#       checked_nums << int
+#     end
+#   end
   
-  ints.each do |int|
-    if checked_nums.include?(int) && int == (sum - int)
-      return [int, int]
-    elsif checked_nums.include?(int)
-      next
-    elsif checked_nums.include?(sum - int)
-      return [(sum - int), int]
-    else
-      checked_nums << int
-    end
-  end
-  
-  nil
-end
+#   nil
+# end
 
-# def sum(array)
-#   p array.empty? ? 0 : array.last + sum(array[0, array.size - 1])
+# 4
+# def sum_pairs(ints, s)
+#   seen = {}
+#   for i in ints do
+#     return [s-i, i] if seen[s-i]
+#     seen[i] = true
+#   end
+#   nil
 # end
 
 
