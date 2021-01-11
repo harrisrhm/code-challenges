@@ -7,17 +7,47 @@
 # Those numbers for which this process ends in 1 are happy.
 # Return true if n is a happy number, and false if not.
 
+# def is_happy(n)
+#   split_digit = n.to_s.split("").map { |integer| integer.to_i }
+#   arr = []
+#     split_digit.each do |n|
+#       arr << n**2 
+#     end
+#   new_arr = arr.sum
+#   new_sum = []
+#   until new_arr == 1
+#     bow = new_arr.to_s.split("").map { |integer| integer.to_i }
+#     bow.each do |b|
+#       new_sum << b**2
+#       if new_sum.sum == 1
+#         break
+#       end
+#     end
+#   end
+#   p new_sum
+# end
+
+
 def is_happy(n)
   split_digit = n.to_s.split("").map { |integer| integer.to_i }
   arr = []
-  until arr.sum == 1 do
     split_digit.each do |n|
       arr << n**2 
     end
+  if arr.sum == 1
+    p true
+  else
+    loop do
+      new_arr = []
+      arr.sum.to_s.split("").map { |integer| integer.to_i }.each { |n| new_arr << n **2 }
+        if new_arr.sum == 1
+          break
+        end
+    end
+  elsif
+    arr.sum != 1
+    p false
   end
-  p arr
 end
 
 is_happy(19)
-
-# p arr.sum == 1 ? true : false
