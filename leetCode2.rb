@@ -50,7 +50,7 @@
 #   end
 # end
 
-require 'pry'
+# require 'pry'
 
 def is_happy(n)
   def add_split(num)
@@ -59,16 +59,11 @@ def is_happy(n)
           str.to_i ** 2
       end.sum
   end
-
   i = add_split(n)
-
-  binding.pry
-    
   until i == 1 || i == 16
       i = add_split(i)
   end
- 
-  i == 1 ? true : false
+  p i == 1 ? true : false
 end
 
-is_happy(19)
+is_happy(20)
