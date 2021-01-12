@@ -28,26 +28,47 @@
 # end
 
 
+# def is_happy(n)
+#   split_digit = n.to_s.split("").map { |integer| integer.to_i }
+#   arr = []
+#     split_digit.each do |n|
+#       arr << n**2 
+#     end
+#   if arr.sum == 1
+#     p true
+#   else
+#     loop do
+#       new_arr = []
+#       arr.sum.to_s.split("").map { |integer| integer.to_i }.each { |n| new_arr << n **2 }
+#         if new_arr.sum == 1
+#           break
+#         end
+#     end
+#   elsif
+#     arr.sum != 1
+#     p false
+#   end
+# end
+
+require 'pry'
+
 def is_happy(n)
-  split_digit = n.to_s.split("").map { |integer| integer.to_i }
-  arr = []
-    split_digit.each do |n|
-      arr << n**2 
-    end
-  if arr.sum == 1
-    p true
-  else
-    loop do
-      new_arr = []
-      arr.sum.to_s.split("").map { |integer| integer.to_i }.each { |n| new_arr << n **2 }
-        if new_arr.sum == 1
-          break
-        end
-    end
-  elsif
-    arr.sum != 1
-    p false
+  def add_split(num)
+      arr = num.to_s.split("")
+      arr.map do |str|
+          str.to_i ** 2
+      end.sum
   end
+
+  i = add_split(n)
+
+  binding.pry
+    
+  until i == 1 || i == 16
+      i = add_split(i)
+  end
+ 
+  i == 1 ? true : false
 end
 
 is_happy(19)
