@@ -25,20 +25,19 @@
 
 def move_zeroes(nums)
   len = nums.length
-  count=0
+  count = 0
   for i in 0...len
-      if a[i]!=0
-          a[count]=a[i]
-          count+=1
+      if nums[i] != 0
+          nums[count] = nums[i]
+          count += 1
       end
   end
 # # Loop from count to len-1 and fill it with zeros 
-#   while count<len
-#       a[count]=0
-#       count+=1
-#   end
-#   return a
+  while count < len
+      nums[count] = 0
+      count += 1
+  end
+  return nums
 end
-
 
 move_zeroes([0,1,0,3,12])
