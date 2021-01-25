@@ -7,3 +7,19 @@
 
 # You must do this in-place without making a copy of the array.
 # Minimize the total number of operations.
+
+def move_zeroes(nums)
+    arr_one = []
+    arr_two = []
+    arr_three = [arr_two, arr_one]
+    nums.each do |n|
+      if n == 0
+        arr_one << n
+      else
+        arr_two << n
+      end
+    end
+    p arr_three.flatten
+end
+
+move_zeroes([0,1,0,3,12])
