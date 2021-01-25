@@ -13,10 +13,16 @@
 #   end
 # end
 
+# def max_sub_array(nums)
+#   largest_sum,current = nums[0], 0
+#   nums.each{ |x| largest_sum = [largest_sum, current = [x, current + x].max].max }
+#   largest_sum
+# end
+
 def max_sub_array(nums)
   largest_sum,current = nums[0], 0
-  nums.each{|x| largest_sum = [largest_sum, current=[x, current + x].max].max}
-  largest_sum
+  nums.each{ |x| largest_sum = [largest_sum, current = [x, current + x].max].max }
+  p largest_sum
 end
 
 max_sub_array([-2,1,-3,4,-1,2,1,-5,4])
