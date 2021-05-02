@@ -1,3 +1,3 @@
 # code-challenges
 
-Variety of coding challenges from sources like Leetcode, Hackerrank and Codewar. 
+Variety of coding challenges attempt and practice from sources like Leetcode, Hackerrank and Codewar. 
